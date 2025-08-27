@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Data Analyst Portfolio</title>
+    <style>
+        /* --- Basic Setup & Typography --- */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-gray: #ecf0f1;
+            --medium-gray: #bdc3c7;
+            --dark-gray: #7f8c8d;
+            --background-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.3;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Language Switcher --- */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+
+        .lang-switcher a {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .lang-switcher a.active {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            cursor: default;
+        }
+
+        .lang-switcher a:not(.active):hover {
+            background-color: var(--light-gray);
+            text-decoration: none;
+        }
+
+        /* --- Main Layout --- */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows main content to wrap below sidebar on small screens */
+        }
+
+        /* --- Sidebar (Left Column) --- */
+        .sidebar {
+            width: 14%;
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            height: 100vh;
+            position: fixed; /* Fixes sidebar in place */
+            overflow-y: auto; /* Allows scrolling if content is long */
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+            border: 4px solid var(--light-gray);
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info svg {
+            margin-right: 10px;
+            fill: var(--dark-gray);
+        }
+
+        .sidebar h2 {
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .tech-stack ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tech-stack li {
+            border-radius: 2px;
+            padding: 2px;
+            margin-bottom: 2px;
+            font-size: 0.9em;
+        }
+
+        /* --- Main Content (Right Column) --- */
+        .main-content {
+            width: 78%;
+            padding: 10px;
+            margin-left: 18%; /* Offset by sidebar width */
+        }
+
+        /* --- Project Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 25px;
+        }
+
+        .project-cell {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-cell h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+        }
+
+        .project-content {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .report-container {
+            flex: 3; /* Takes up more space */
+        }
+
+        .tech-used {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .tech-used h4 {
+            margin-top: 0;
+            color: var(--dark-gray);
+        }
+
+        .tech-used ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 0.85em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-used li {
+            background-color: var(--light-gray);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .report-embed {
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+            border: 1px solid var(--light-gray);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: relative; /* Unfix the sidebar */
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding-bottom: 0;
+            }
+
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr; /* 1 column on smaller tablets/large phones */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ====================================================== -->
+    <!-- =================== SIDEBAR (LEFT) =================== -->
+    <!-- ====================================================== -->
+    <aside class="sidebar">
+
+        <!-- YOUR PHOTO -->
+        <img src="pfp.png" alt="Your Name" class="profile-photo"
+             onerror="this.onerror=null;this.src='https://placehold.co/150x150/3498db/ffffff?text=me';">
+
+        <!-- YOUR NAME -->
+        <h1>Hi, I'm Veronika</h1>
+
+        <!-- YOUR CONTACT INFO -->
+        <div class="contact-info">
+            <p>👤  <a href="https://www.linkedin.com/in/veronika-golanova-27322126b/" target="_blank"> LinkedIn</a></p>
+            <p>📩 golanova.ve@gmail.com</p>
+            <p>📞 +320467600960</p>
+            <p>📍 Antwerp, Belgium</p>
+        </div>
+
+        <!-- ABOUT ME SECTION -->
+        <h2>Profile</h2>
+        <p>
+            Data Analyst with experience in transforming complex data into actionable insights. I specialize in data
+            visualization, ETL processes, and building comprehensive dashboards that drive business decisions.
+        </p>
+
+        <!-- TECH STACK SECTION -->
+        <h2>Tech Stack</h2>
+        <div class="tech-stack">
+            <ul>
+                <li> - Power BI, Tableau, Excel</li>
+                <li> - Database Management: PostgreSQL, MS SQL, Neo4j, Data Warehousing, ETL</li>
+                <li> - Python (pandas, matplotlib, seaborn, scikit-learn, PyTorch, pyodbc, basket analysis)</li>
+                <li> - Docker</li>
+                <li> - Machine Learning, Deep Learning</li>
+                <li> - Bash scripting</li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- ====================================================== -->
+    <!-- ================= MAIN CONTENT (RIGHT) =============== -->
+    <!-- ====================================================== -->
+    <main class="main-content">
+        <div class="lang-switcher">
+            <a href="index.html" class="active">EN</a> |
+            <a href="index-nl.html">NL</a>
+        </div>
+
+        <h1>📌 Projects</h1>
+
+        <div class="projects-grid">
+
+            <!-- ================== PROJECT CELL 1 ================== -->
+            <div class="project-cell">
+                <h3>E-Commerce Sales Dashboard</h3>
+                <div class="project-content">
+                    <div class="report-container">
+                        <!-- PASTE YOUR POWER BI EMBED CODE FOR PROJECT 1 HERE -->
+                        <iframe title="brazilsales" width="500" height="310"
+                                src="https://app.powerbi.com/reportEmbed?reportId=b249112b-f1ac-4c3f-aa48-1986ecabf115&autoAuth=true&ctid=ed1fc57f-8a97-47e7-9de1-9302dfd786ae"
+                                frameborder="0" allowFullScreen="true"></iframe>
+                    </div>
+                </div>
+                <div class="tech-used">
+                    <h4>Techs Used:</h4>
+                    <ul>
+                        <li>Power BI</li>
+                        <li>DAX</li>
+                        <li>M Language</li>
+                        <li>Python (basket analysis)</li>
+                        <li>MS SQL</li>
+                        <li>Data Warehouse</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ================== PROJECT CEL 2 ================== -->
+             <div class="project-cell">
+                <h3>E-Commerce Sales Dashboard</h3>
+                <div class="project-content">
+                    <div class="report-container">
+                        <!-- PASTE YOUR POWER BI EMBED CODE FOR PROJECT 1 HERE -->
+
+                    </div>
+                </div>
+                <div class="tech-used">
+                    <h4>Techs Used:</h4>
+                    <ul>
+                        <li>Power BI</li>
+                        <li>DAX</li>
+                        <li>M Language</li>
+                        <li>MS SQL</li>
+                        <li>Python (basket analysis)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ================== PROJECT CEL 3 ================== -->
+            <div class="project-cell">
+                <h3>E-Commerce Sales Dashboard</h3>
+                <div class="project-content">
+                    <div class="report-container">
+                        <!-- PASTE YOUR POWER BI EMBED CODE FOR PROJECT 1 HERE -->
+
+                    </div>
+                </div>
+                <div class="tech-used">
+                    <h4>Techs Used:</h4>
+                    <ul>
+                        <li>Power BI</li>
+                        <li>DAX</li>
+                        <li>M Language</li>
+                        <li>MS SQL</li>
+                        <li>Data Warehouse</li>
+                        <li>Python (basket analysis)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DUPLICEER DE ".project-cell" DIV VOOR MEER PROJECTEN -->
+
+
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

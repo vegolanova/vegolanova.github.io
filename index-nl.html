@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jouw Naam - Data-analist Portfolio</title>
+    <style>
+        /* --- Basic Setup & Typography --- */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-gray: #ecf0f1;
+            --medium-gray: #bdc3c7;
+            --dark-gray: #7f8c8d;
+            --background-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Main Layout --- */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows main content to wrap below sidebar on small screens */
+        }
+
+        /* --- Sidebar (Left Column) --- */
+        .sidebar {
+            width: 22%;
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            height: 100vh;
+            position: fixed; /* Fixes sidebar in place */
+            overflow-y: auto; /* Allows scrolling if content is long */
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+            border: 4px solid var(--light-gray);
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info svg {
+            margin-right: 10px;
+            fill: var(--dark-gray);
+        }
+
+        .sidebar h2 {
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .tech-stack ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tech-stack li {
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        /* --- Main Content (Right Column) --- */
+        .main-content {
+            width: 78%;
+            padding: 40px;
+            margin-left: 22%; /* Offset by sidebar width */
+            position: relative;
+        }
+
+        /* --- Language Switcher --- */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+
+        .lang-switcher a {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .lang-switcher a.active {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            cursor: default;
+        }
+
+        .lang-switcher a:not(.active):hover {
+            background-color: var(--light-gray);
+            text-decoration: none;
+        }
+
+        /* --- Project Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 30px;
+        }
+
+        .project-cell {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .project-cell h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+        }
+
+        .project-content {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .report-container {
+            flex: 3; /* Takes up more space */
+        }
+
+        .tech-used {
+            flex: 1; /* Takes up less space */
+            border-left: 1px solid var(--medium-gray);
+            padding-left: 20px;
+        }
+
+        .tech-used h4 {
+            margin-top: 0;
+            color: var(--dark-gray);
+        }
+
+        .tech-used ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 0.85em;
+        }
+
+        .tech-used li {
+            margin-bottom: 5px;
+        }
+
+        .report-embed {
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+            border: 1px solid var(--light-gray);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: relative; /* Unfix the sidebar */
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding-bottom: 0;
+            }
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr; /* 1 column on smaller tablets/large phones */
+            }
+            .lang-switcher {
+                top: 10px;
+                right: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+
+        <!-- ====================================================== -->
+        <!-- =================== ZIJBALK (LINKS) ================== -->
+        <!-- ====================================================== -->
+        <aside class="sidebar">
+
+            <!-- JOUW FOTO -->
+            <img src="https://placehold.co/150x150/3498db/ffffff?text=You" alt="Jouw Naam" class="profile-photo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/3498db/ffffff?text=You';">
+
+            <!-- JOUW NAAM -->
+            <h1>Jouw Naam</h1>
+
+            <!-- JOUW CONTACTGEGEVENS -->
+            <div class="contact-info">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg><a href="https://www.linkedin.com/in/your-profile/" target="_blank">LinkedIn Profiel</a></p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>jouw.email@voorbeeld.com</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M20 22.621l-3.521-6.795c-.008.004-1.932 1.51-2.458 1.919-1.233.955-2.532 1.255-3.622.921-.545-.166-1.113-.413-1.646-.737-.533-.324-1.033-.72-1.488-1.176s-.852-.955-1.176-1.488c-.324-.533-.571-1.101-.737-1.646-.334-1.09.034-2.423 1.022-3.688.41-.527 1.916-2.455 1.919-2.458l-6.795-3.521-2.121 2.121c-2.458 2.458-3.43 5.922-2.122 8.481s5.922 3.43 8.481 2.122l2.121-2.121z"/></svg>+12 345 678 90</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.402-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.198-3.802-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>Jouw Stad, Land</p>
+            </div>
+
+            <!-- OVER MIJ SECTIE -->
+            <h2>Over Mij</h2>
+            <p>
+                Een gepassioneerde en detailgerichte Data-analist met ervaring in het omzetten van complexe data naar bruikbare inzichten. Ik ben gespecialiseerd in datavisualisatie, ETL-processen en het bouwen van uitgebreide dashboards die zakelijke beslissingen sturen.
+            </p>
+
+            <!-- TECH STACK SECTIE -->
+            <h2>Tech Stack</h2>
+            <div class="tech-stack">
+                <ul>
+                    <li>Power BI</li>
+                    <li>SQL Server</li>
+                    <li>Python (Pandas, Matplotlib)</li>
+                    <li>DAX</li>
+                    <li>Power Query (M Language)</li>
+                    <li>Excel</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ====================================================== -->
+        <!-- ============== HOOFDINHOUD (RECHTS) ================ -->
+        <!-- ====================================================== -->
+        <main class="main-content">
+
+            <div class="lang-switcher">
+                <a href="index.html">EN</a> |
+                <a href="index-nl.html" class="active">NL</a>
+            </div>
+
+            <h1>📌 Projecten</h1>
+
+            <div class="projects-grid">
+
+                <!-- ================== PROJECT CEL 1 ================== -->
+                <div class="project-cell">
+                    <h3>Project 1: E-commerce Verkoopdashboard</h3>
+                    <div class="project-content">
+                        <div class="report-container">
+                            <!-- PLAK HIER JE POWER BI EMBED CODE VOOR PROJECT 1 -->
+                            <iframe title="Report Section" class="report-embed" src="https://app.powerbi.com/view?r=eyJrIjoiEXAMPLE...1" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                        <div class="tech-used">
+                            <h4>Gebruikte Tech:</h4>
+                            <ul>
+                                <li>Power BI</li>
+                                <li>DAX</li>
+                                <li>SQL Server</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================== PROJECT CEL 2 ================== -->
+                <div class="project-cell">
+                    <h3>Project 2: Logistiek & Leveringsanalyse</h3>
+                    <div class="project-content">
+                        <div class="report-container">
+                            <!-- PLAK HIER JE POWER BI EMBED CODE VOOR PROJECT 2 -->
+                            <iframe title="Report Section" class="report-embed" src="https://app.powerbi.com/view?r=eyJrIjoiEXAMPLE...2" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                        <div class="tech-used">
+                            <h4>Gebruikte Tech:</h4>
+                            <ul>
+                                <li>Power BI</li>
+                                <li>Power Query</li>
+                                <li>DAX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================== PROJECT CEL 3 ================== -->
+                <div class="project-cell">
+                    <h3>Project 3: Winkelmandanalyse</h3>
+                    <div class="project-content">
+                        <div class="report-container">
+                             <!-- PLAK HIER JE POWER BI EMBED CODE VOOR PROJECT 3 -->
+                            <iframe title="Report Section" class="report-embed" src="https://app.powerbi.com/view?r=eyJrIjoiEXAMPLE...3" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                        <div class="tech-used">
+                            <h4>Gebruikte Tech:</h4>
+                            <ul>
+                                <li>Python</li>
+                                <li>SQL Server</li>
+                                <li>Power BI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DUPLICEER DE ".project-cell" DIV VOOR MEER PROJECTEN -->
+
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html>
