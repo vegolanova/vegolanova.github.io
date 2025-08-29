@@ -15,6 +15,29 @@
             --background-color: #f4f7f6;
         }
 
+        .image-row {
+            display: flex; /* Use Flexbox to align items in a row */
+            flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
+            gap: 15px; /* Adds space between the images */
+            justify-content: center; /* Center the images in the container */
+        }
+
+        /* The container for each individual image */
+        .image-container {
+            flex: 1 1 350px; /* Flex-grow, flex-shrink, and basis. Allows images to grow and shrink but have a base width of 300px */
+            max-width: 550px; /* Optional: sets a maximum width for each image container */
+            border-radius: 8px; /* Optional: adds rounded corners */
+            overflow: hidden; /* Ensures the image stays within the rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+        }
+
+        /* Style for the actual image to make it responsive */
+        .image-container img {
+            width: 100%; /* Makes the image fill its container */
+            height: auto; /* Maintains the aspect ratio */
+            display: block; /* Removes any extra space below the image */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.3;
@@ -230,9 +253,9 @@
             border: 1px solid var(--light-gray);
         }
 
-        .project-article img {
+        .project-article img, iframe {
             max-width: 100%;
-            height: auto;
+            max-height: 100%;
             border-radius: 8px;
             display: block;
             margin: 20px auto;
@@ -279,19 +302,20 @@
              onerror="this.onerror=null;this.src='https://placehold.co/150x150/3498db/ffffff?text=me';">
 
         <!-- YOUR NAME -->
-        <h1>Hi, I'm Veronika</h1>
+        <h1>Hallo, ik ben Veronika</h1>
 
         <!-- YOUR CONTACT INFO -->
         <div class="contact-info">
             <p>👤 <a href="https://www.linkedin.com/in/veronika-golanova-27322126b/" target="_blank"> LinkedIn</a></p>
             <p>📩 golanova.ve@gmail.com</p>
             <p>📞 +320467600960</p>
-            <p>📍 Antwerp, Belgium</p>
+            <p>📍 Antwerpen, België</p>
         </div>
-        <h2>Profile</h2>
+        <h2>Profiel</h2>
         <p>
-            Data Analyst with experience in transforming complex data into actionable insights. I specialize in data
-            visualization, ETL processes, and building comprehensive dashboards that drive business decisions.
+             Data-analist met ervaring in het vertalen van complexe of schaarse data naar bruikbare inzichten. Ik ben
+            gespecialiseerd in datavisualisatie, ETL-processen en het ontwikkelen van uitgebreide dashboards die
+            zakelijke beslissingen ondersteunen.
         </p>
 
         <!-- TECH STACK SECTION -->
@@ -314,48 +338,82 @@
     <main class="main-content">
 
         <div class="lang-switcher">
-            <a href="project1.html" class="active">EN</a> |
-            <a href="../nl/project1.html">NL</a>
+            <a href="../en/project2.html">EN</a> |
+            <a href="../nl/project2.html" class="active">NL</a>
         </div>
 
         <article class="project-article">
-            <a href="../../index.html" class="back-link">&larr; Back to Portfolio</a>
+            <a href="../../index-nl.html" class="back-link">&larr; Terug naar Portfolio</a>
 
-            <h1>Project 1: Brazil E-commerce Sales Analysis</h1>
+            <h1>Project 2: Uber Data Analytics</h1>
             <div class="tech-stack">
                 <ul>
                     <li>Power BI</li>
                     <li>DAX</li>
                     <li>M Language</li>
-                    <li>MS SQL Server</li>
-                    <li>Python (pandas, sqlalchemy, apriori, association rules)</li>
-                    <li>Docker</li>
                 </ul>
             </div>
 
-            <img src="../../media/projects/brazilsales/pbi_dashboard.png"
-                 alt="Dashboard Screenshot" width="920" height="500">
+            <iframe width="1000" height="620"
+                    src="https://www.youtube.com/embed/cJuAPXYUOBs?si=lcOKDPY2quWxQwNv"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="image-row">
 
-            <h3>Data Modeling</h3>
+                <div class="image-container">
+                    <img src="../../media/projects/uberdataanalytics/report1.png">
+                </div>
+
+                <div class="image-container">
+                    <img src="../../media/projects/uberdataanalytics/report2.png">
+                </div>
+
+                <div class="image-container">
+                    <img src="../../media/projects/uberdataanalytics/report3.png">
+                </div>
+
+            </div>
+
+            <h3>Projectoverzicht</h3>
             <p>
-                The first step was to restructure the database for it to become a data warehouse to handle the data in a more robust way and to clean up any inconsistencies.
-            To keep track of the order history and its status updates, type 2 slowly changing dimension was created. The MS SQL Server database was deployed in a Docker container.
+
+                Om een echt uitgebreid en inzichtelijk dashboard te creëren, moest ik creatief omgaan met de relevante
+                kengetallen en naar de data kijken vanuit het perspectief van een CEO: 'Welke kengetallen zouden voor
+                mij belangrijk zijn?'. Het doel van dit project was een end-to-end analyse uit te voeren van de
+                operationele en financiële data van een Uber-rittenservice. Vervolgens heb ik deze ruwe dataset omgezet
+                in een dynamisch, meerpagina’s tellend Power BI-dashboard dat bruikbare inzichten biedt in KPI’s,
+                klantgedrag en annuleringspatronen.
+
             </p>
-             <img src="../../media/projects/brazilsales/db_modif_schema.png"
-                 alt="Dashboard Screenshot" width="920" height="500"
+
+            <h3>Belangrijkste functies & prestaties</h3>
+
+            <p>1. Datatransformatie (ETL): Ruwe boekingsdata opgeschoond en voorbereid met Power Query. Aangemaakte
+                berekende kolommen om de dataset te verrijken, zoals het indelen van klantbeoordelingen in categorieën
+                en meer inzicht in tijd: een aparte Datum-tabel met aaneengesloten datums, en daarnaast weekdagen,
+                seizoenen en dagdelen (ochtend, middag...).</p>
+
+            <p>2. Geavanceerde DAX-berekeningen: Ontwikkeld een reeks complexe measures om prestaties te analyseren,
+                waaronder:</p>
+            <ul>
+                <li>Tijdintelligentie: een 30-daags voortschrijdend gemiddelde om trends te egaliseren en te vergelijken
+                    met maandtotalen.
+                </li>
+                <li>Financiële kengetallen: tarief per km (als verhouding van sommen), geschatte misgelopen omzet door
+                    annuleringen, en Year-over-Year (YoY) groei.
+                </li>
+                <li>Segmentanalyse: geanalyseerd naar de "annulatiegewoonten" van verschillende
+                    klantbeoordelingsgroepen.
+                </li>
+                <li>Interactief ontwerp: een uitgebreid, meerpagina-rapport ontworpen met relevante filters en
+                    navigatie, geïnspireerd op professionele BI-oplossingen.
+                </li>
+            </ul>
+            <img src="../../media/projects/uberdataanalytics/modifs.png"
+                 alt="Dashboard Screenshot" width="880" height="500"
                  onerror="this.onerror=null;this.src='https://placehold.co/800x450/ecf0f1/2c3e50?text=Screenshot+van+Dashboard';">
 
-            <h3>Data Cleaning & Exploration</h3>
-            <p>
-                There were a lot of inconsistencies that needed to be dealt with, such as typos and missing values. Additionally, the data lacked a Date table in order to later on
-                visualise any insights over a continuous period of time. Relationships between different columns were explored, and additional measures/calculated columns were created
-                for a deeper analysis.
-
-                To dive deeper, I performed basket analysis to figure out which products are often bought together. Yet to sum it up, I wasn't able to find any relationships until lowering the min support to 0.01%,
-                or in more interpretable words, I was looking for item combinations that appear in at least 1 in every 10,000 orders. My analysis found one weak yet positive relationship
-                between two subcategories, what means that customers don't have any tendencies to buy certain subcategories together, most likely no strong
-                relationships were found due to the limited amount of data in the dataset.
-            </p>
 
         </article>
 

@@ -279,19 +279,20 @@
              onerror="this.onerror=null;this.src='https://placehold.co/150x150/3498db/ffffff?text=me';">
 
         <!-- YOUR NAME -->
-        <h1>Hi, I'm Veronika</h1>
+        <h1>Hallo, Ik ben Veronika</h1>
 
         <!-- YOUR CONTACT INFO -->
         <div class="contact-info">
             <p>👤 <a href="https://www.linkedin.com/in/veronika-golanova-27322126b/" target="_blank"> LinkedIn</a></p>
             <p>📩 golanova.ve@gmail.com</p>
             <p>📞 +320467600960</p>
-            <p>📍 Antwerp, Belgium</p>
+            <p>📍 Antwerpen, België</p>
         </div>
-        <h2>Profile</h2>
+        <h2>Profiel</h2>
         <p>
-            Data Analyst with experience in transforming complex data into actionable insights. I specialize in data
-            visualization, ETL processes, and building comprehensive dashboards that drive business decisions.
+            Data-analist met ervaring in het vertalen van complexe of schaarse data naar bruikbare inzichten. Ik ben
+            gespecialiseerd in datavisualisatie, ETL-processen en het ontwikkelen van uitgebreide dashboards die
+            zakelijke beslissingen ondersteunen.
         </p>
 
         <!-- TECH STACK SECTION -->
@@ -314,12 +315,12 @@
     <main class="main-content">
 
         <div class="lang-switcher">
-            <a href="project1.html" class="active">EN</a> |
-            <a href="../nl/project1.html">NL</a>
+            <a href="../en/project1.html">EN</a> |
+            <a href="project1.html" class="active">NL</a>
         </div>
 
         <article class="project-article">
-            <a href="../../index.html" class="back-link">&larr; Back to Portfolio</a>
+            <a href="../../index-nl.html" class="back-link">&larr;Terug naar Portfolio</a>
 
             <h1>Project 1: Brazil E-commerce Sales Analysis</h1>
             <div class="tech-stack">
@@ -338,23 +339,29 @@
 
             <h3>Data Modeling</h3>
             <p>
-                The first step was to restructure the database for it to become a data warehouse to handle the data in a more robust way and to clean up any inconsistencies.
-            To keep track of the order history and its status updates, type 2 slowly changing dimension was created. The MS SQL Server database was deployed in a Docker container.
+                De eerste stap was het herstructureren van de database tot een datawarehouse om de data op een
+                robuustere manier te kunnen verwerken en om inconsistenties op te lossen.
+                Om de bestelgeschiedenis en de statusupdates bij te houden, is een type 2 slowly changing dimension
+                opgezet.
+                De MS SQL Server-database is gedeployed in een Docker-container.
             </p>
-             <img src="../../media/projects/brazilsales/db_modif_schema.png"
+            <img src="../../media/projects/brazilsales/db_modif_schema.png"
                  alt="Dashboard Screenshot" width="920" height="500"
                  onerror="this.onerror=null;this.src='https://placehold.co/800x450/ecf0f1/2c3e50?text=Screenshot+van+Dashboard';">
 
             <h3>Data Cleaning & Exploration</h3>
             <p>
-                There were a lot of inconsistencies that needed to be dealt with, such as typos and missing values. Additionally, the data lacked a Date table in order to later on
-                visualise any insights over a continuous period of time. Relationships between different columns were explored, and additional measures/calculated columns were created
-                for a deeper analysis.
+                Er waren veel inconsistenties die moesten worden opgelost, zoals typefouten en ontbrekende waarden.
+                Daarnaast ontbrak er een Datum-tabel, waardoor het niet mogelijk was om inzichten over een doorlopende
+                periode te visualiseren. Ook zijn de relaties tussen verschillende kolommen onderzocht en zijn extra
+                measures/berekende kolommen gecreëerd voor een diepgaandere analyse.
 
-                To dive deeper, I performed basket analysis to figure out which products are often bought together. Yet to sum it up, I wasn't able to find any relationships until lowering the min support to 0.01%,
-                or in more interpretable words, I was looking for item combinations that appear in at least 1 in every 10,000 orders. My analysis found one weak yet positive relationship
-                between two subcategories, what means that customers don't have any tendencies to buy certain subcategories together, most likely no strong
-                relationships were found due to the limited amount of data in the dataset.
+                Om dieper in te gaan, heb ik een basketanalyse uitgevoerd om te achterhalen welke producten vaak samen
+                worden gekocht. Samengevat: ik kon geen relaties vinden totdat ik de minimale support verlaagde naar
+                0,01%, of met andere woorden, ik zocht naar productcombinaties die voorkomen in ten minste 1 op elke
+                10.000 bestellingen. Mijn analyse vond één zwakke maar positieve relatie tussen twee subcategorieën. Dit
+                betekent dat klanten geen duidelijke neiging hebben om bepaalde subcategorieën samen te kopen.
+                Waarschijnlijk zijn er geen sterke relaties gevonden vanwege de beperkte hoeveelheid data in de dataset.
             </p>
 
         </article>
